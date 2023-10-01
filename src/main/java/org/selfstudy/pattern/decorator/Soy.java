@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 public class Soy extends CondimentDecorator {
 
     public Soy(Beverage beverage) {
-        this.beverage = beverage;
+        super(beverage);
         this.description = "Soy";
         this.price = BigDecimal.valueOf(0.15);
     }

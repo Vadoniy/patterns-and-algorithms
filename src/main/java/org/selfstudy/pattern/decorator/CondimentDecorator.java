@@ -12,6 +12,10 @@ public abstract class CondimentDecorator implements Beverage {
     String description;
     BigDecimal price;
 
+    public CondimentDecorator(Beverage beverage) {
+        this.beverage = beverage;
+    }
+
     @Override
     public String getDescription() {
         return new StringJoiner(", ").add(beverage.getDescription()).add(description).toString();
@@ -19,6 +23,9 @@ public abstract class CondimentDecorator implements Beverage {
 
     @Override
     public BigDecimal cost() {
+        if (price == null) {
+            return beverage.cost();
+        }
         return beverage.cost().add(price);
     }
 }

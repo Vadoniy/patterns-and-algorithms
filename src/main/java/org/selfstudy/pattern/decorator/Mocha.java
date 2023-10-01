@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 public class Mocha extends CondimentDecorator {
 
     public Mocha(Beverage beverage) {
-        this.beverage = beverage;
+        super(beverage);
         this.description = "Mocha";
         this.price = BigDecimal.valueOf(0.2);
     }
