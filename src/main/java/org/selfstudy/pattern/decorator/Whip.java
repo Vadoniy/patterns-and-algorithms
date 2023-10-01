@@ -9,15 +9,11 @@ public class Whip extends CondimentDecorator {
 
     public Whip(Beverage beverage) {
         this.beverage = beverage;
+        this.description = "Whip";
+        this.price = BigDecimal.valueOf(0.1);
     }
 
-    @Override
-    public BigDecimal cost() {
-        return beverage.cost().add(BigDecimal.valueOf(0.1));
-    }
-
-    @Override
-    public String getDescription() {
-        return beverage.getDescription() + ", Whip";
+    public static Beverage addWhipToBeverage(Beverage beverage) {
+        return new Whip(beverage);
     }
 }

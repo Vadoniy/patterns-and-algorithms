@@ -9,15 +9,11 @@ public class Mocha extends CondimentDecorator {
 
     public Mocha(Beverage beverage) {
         this.beverage = beverage;
+        this.description = "Mocha";
+        this.price = BigDecimal.valueOf(0.2);
     }
 
-    @Override
-    public BigDecimal cost() {
-        return beverage.cost().add(BigDecimal.valueOf(0.2));
-    }
-
-    @Override
-    public String getDescription() {
-        return beverage.getDescription() + ", Mocha";
+    public static Beverage addMochaToBeverage(Beverage beverage) {
+        return new Mocha(beverage);
     }
 }

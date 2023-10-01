@@ -9,15 +9,11 @@ public class Milk extends CondimentDecorator {
 
     public Milk(Beverage beverage) {
         this.beverage = beverage;
+        this.description = "Milk";
+        this.price = BigDecimal.valueOf(0.1);
     }
 
-    @Override
-    public BigDecimal cost() {
-        return beverage.cost().add(BigDecimal.valueOf(0.1));
-    }
-
-    @Override
-    public String getDescription() {
-        return beverage.getDescription() + ", Milk";
+    public static Beverage addMilkToBeverage(Beverage beverage) {
+        return new Milk(beverage);
     }
 }

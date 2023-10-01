@@ -1,26 +1,29 @@
 package org.selfstudy.pattern.decorator;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import java.math.BigDecimal;
 
 public class DecoratorUnitTest {
 
     @Test
     public void test() {
         final var beverage1 = new Espresso();
-        System.out.println(beverage1.getDescription() + " $" + beverage1.cost());
+        Assertions.assertEquals(BigDecimal.valueOf(1.99), beverage1.cost());
+        Assertions.assertEquals("Espresso $1.99", beverage1.getDescription() + " $" + beverage1.cost());
 
-        Beverage beverage2 = new DarkRoast();
-        beverage2 = new Mocha(beverage2);
-        beverage2 = new Mocha(beverage2);
-        beverage2 = new Whip(beverage2);
+        final var beverage2 = Whip.addWhipToBeverage(Mocha.addMochaToBeverage(Mocha.addMochaToBeverage(new DarkRoast())));
+        Assertions.assertEquals(BigDecimal.valueOf(1.49), beverage2.cost());
+        Assertions.assertEquals("Dark roasted coffee, Mocha, Mocha, Whip $1.49", beverage2.getDescription() + " $" + beverage2.cost());
 
-        System.out.println(beverage2.getDescription() + " $" + beverage2.cost());
+        final var beverage3 = Whip.addWhipToBeverage(Mocha.addMochaToBeverage(Soy.addSoyToBeverage(new HouseBlend())));
 
-        Beverage beverage3 = new HouseBlend();
-        beverage3 = new Soy(beverage3);
-        beverage3 = new Mocha(beverage3);
-        beverage3 = new Whip(beverage3);
+        Assertions.assertEquals("House blend coffee, Soy, Mocha, Whip $1.34", beverage3.getDescription() + " $" + beverage3.cost());
+        Assertions.assertEquals(BigDecimal.valueOf(1.34), beverage3.cost());
 
-        System.out.println(beverage3.getDescription() + " $" + beverage3.cost());
+        final var beverage4 = Whip.addWhipToBeverage(Milk.addMilkToBeverage(Mocha.addMochaToBeverage(new Decaf())));
+        Assertions.assertEquals("Decaffeinated, Mocha, Milk, Whip $1.45", beverage4.getDescription() + " $" + beverage4.cost());
+        Assertions.assertEquals(BigDecimal.valueOf(1.45), beverage4.cost());
     }
 }

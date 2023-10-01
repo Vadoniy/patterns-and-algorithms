@@ -3,15 +3,11 @@ package org.selfstudy.pattern.decorator;
 import java.math.BigDecimal;
 
 /**
- * Kind of Component in Decorator pattern scheme
+ * Kind of Component interface in Decorator pattern scheme
  */
-public abstract class Beverage {
+public interface Beverage {
 
-    String description = "Abstract beverage";
+    BigDecimal cost();
 
-    public abstract BigDecimal cost();
-
-    public String getDescription() {
-        return description;
-    }
+    String getDescription();
 }
