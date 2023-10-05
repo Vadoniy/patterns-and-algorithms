@@ -31,20 +31,16 @@ public class MaximumProfitCounter {
         var maxProfit = BigDecimal.ZERO;
 
         for (int i = 0; i < prices.length; i++) {
-            if (i + 1 == prices.length) {
-                if (isAsset) {
+            if (isAsset) {
+                if (i + 1 == prices.length || prices[i] > prices[i + 1]) {
                     maxProfit = maxProfit.add(new BigDecimal(prices[i]));
+                    isAsset = false;
                 }
-                break;
-            }
-            if (prices[i] > prices[i + 1] && isAsset) {
-                maxProfit = maxProfit.add(new BigDecimal(prices[i]));
-                isAsset = false;
-                continue;
-            }
-            if (prices[i] < prices[i + 1] && !isAsset) {
-                maxProfit = maxProfit.subtract(new BigDecimal(prices[i]));
-                isAsset = true;
+            } else {
+                if (prices[i] < prices[i + 1]) {
+                    maxProfit = maxProfit.subtract(new BigDecimal(prices[i]));
+                    isAsset = true;
+                }
             }
         }
         return cutTheResult(maxProfit);
