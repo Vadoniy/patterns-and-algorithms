@@ -22,6 +22,14 @@ class MaximumProfitCounterTest {
     }
 
     @Test
+    void countMaximumProfitLongArr1() {
+        final var maximumProfitCounter = new MaximumProfitCounter();
+        final var arr = new Integer[]{1, 2, 3, 3, 2, 1, 3, 5, 3};
+        final var maximumProfit = maximumProfitCounter.countMaximumProfit(arr);
+        Assertions.assertEquals(7, maximumProfit);
+    }
+
+    @Test
     void countMaximumProfitBigValues() {
         final var maximumProfitCounter = new MaximumProfitCounter();
         final var arr = new Integer[]{1000000000, 1, 2, 2, 1000000000, 1, 1000000000};//2999999998
