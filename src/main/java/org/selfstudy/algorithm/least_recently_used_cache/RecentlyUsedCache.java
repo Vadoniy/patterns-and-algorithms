@@ -55,6 +55,8 @@ public class RecentlyUsedCache implements LRUCache {
         if (Optional.ofNullable(map.get(key)).orElse(-1) == -1 && map.size() == capacity) { //get() invocation in necessary to refresh "order"
             int first = order.removeFirst();
             map.remove(first);
+        } else if (!order.isEmpty() && order.getFirst().equals(key)) {
+            order.removeFirst();
         }
         order.addLast(key);
         map.put(key, value);
