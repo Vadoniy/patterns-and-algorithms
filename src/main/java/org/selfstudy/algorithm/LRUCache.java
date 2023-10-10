@@ -1,4 +1,4 @@
-package org.selfstudy.algorithm.least_recently_used_cache;
+package org.selfstudy.algorithm;
 
 
 import java.util.HashMap;
@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.Optional;
 
 /**
- * Design a data structure that follows the constraints of a Least Recently Used (LRU) cache.
+ * Design a data structure that follows the constraints of the Least Recently Used (LRU) cache.
  * Implement the LRUCache class:
  * LRUCache(int capacity) Initialize the LRU cache with positive size capacity.
  * int get(int key) Return the value of the key if the key exists, otherwise return -1.
@@ -27,19 +27,18 @@ import java.util.Optional;
  * lRUCache.get(4); // return 4
  */
 
-public class RecentlyUsedCache implements LRUCache {
+public class LRUCache {
 
     int capacity;
     Map<Integer, Integer> map;
     LinkedList<Integer> order;
 
-    public RecentlyUsedCache(int capacity) {
+    public LRUCache(int capacity) {
         this.capacity = capacity;
         this.map = new HashMap<>(capacity);
         this.order = new LinkedList<>();
     }
 
-    @Override
     public int get(int key) {
         if (map.containsKey(key)) {
             order.remove(Integer.valueOf(key));
@@ -50,7 +49,6 @@ public class RecentlyUsedCache implements LRUCache {
         return -1;
     }
 
-    @Override
     public void put(int key, int value) {
         if (Optional.ofNullable(map.get(key)).orElse(-1) == -1 && map.size() == capacity) { //get() invocation in necessary to refresh "order"
             int first = order.removeFirst();

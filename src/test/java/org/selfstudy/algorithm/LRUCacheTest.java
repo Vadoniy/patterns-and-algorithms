@@ -1,15 +1,15 @@
-package org.selfstudy.algorithm.least_recently_used_cache;
+package org.selfstudy.algorithm;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-class RecentlyUsedCacheTest {
+class LRUCacheTest {
 
-    private RecentlyUsedCache recentlyUsedCache;
+    private LRUCache recentlyUsedCache;
 
     @Test
     void get() {
-        recentlyUsedCache = new RecentlyUsedCache(2);
+        recentlyUsedCache = new LRUCache(2);
         recentlyUsedCache.put(1, 1);
         Assertions.assertEquals(recentlyUsedCache.get(1), 1);
         recentlyUsedCache.put(2, 2);
@@ -23,7 +23,7 @@ class RecentlyUsedCacheTest {
 
     @Test
     void put1() {
-        recentlyUsedCache = new RecentlyUsedCache(5);
+        recentlyUsedCache = new LRUCache(5);
         recentlyUsedCache.put(1, 1);
         recentlyUsedCache.put(2, 2);
         recentlyUsedCache.put(3, 3);
@@ -98,7 +98,7 @@ class RecentlyUsedCacheTest {
 
     @Test
     void put2() {
-        recentlyUsedCache = new RecentlyUsedCache(2);
+        recentlyUsedCache = new LRUCache(2);
         recentlyUsedCache.put(1, 1);
         Assertions.assertEquals(1, recentlyUsedCache.get(1));
         recentlyUsedCache.put(2, 2);
@@ -112,7 +112,7 @@ class RecentlyUsedCacheTest {
 
     @Test
     void put3() {
-        recentlyUsedCache = new RecentlyUsedCache(2);
+        recentlyUsedCache = new LRUCache(2);
         recentlyUsedCache.put(2, 1);
         recentlyUsedCache.put(1, 1);
         recentlyUsedCache.put(2, 3);
@@ -123,7 +123,7 @@ class RecentlyUsedCacheTest {
 
     @Test
     void put4() {
-        recentlyUsedCache = new RecentlyUsedCache(10);
+        recentlyUsedCache = new LRUCache(10);
         recentlyUsedCache.put(10, 13);
         recentlyUsedCache.put(3, 17);
         recentlyUsedCache.put(6, 11);
